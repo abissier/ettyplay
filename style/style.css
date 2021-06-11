@@ -1,0 +1,228 @@
+body {
+    margin: 0;
+    font-family: Helvetica, sans-serif;
+    background-color: #bbb;
+}
+
+/* ------------------ Header Styling ----------------------- */
+.header {
+    background-color: transparent;
+    position: fixed;
+    width: 100%;
+    z-index: 3;
+}
+
+.header a {
+    color: white;
+}
+
+.header ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.header li a {
+    display: block;
+    padding: 20px 20px;
+    text-decoration: none;
+    color: black;
+}
+
+.header li a:hover,
+.header .menu-btn:hover {
+    background-color: #f4f4f4;
+}
+
+.header .logo {
+    display: block;
+    float: left;
+    font-size: 2.5em;
+    font-weight: 600;
+    padding: 10px 20px;
+    text-decoration: none;
+}
+
+.header .menu {
+    clear: both;
+    max-height: 0;
+    transition: max-height .2s ease-out;
+}
+
+.header .menu-icon {
+    cursor: pointer;
+    float: right;
+    padding: 28px 20px;
+    position: relative;
+    user-select: none;
+    background-color: rgb(201, 47, 72);
+
+}
+
+.header .menu-icon .nav-icon {
+    background: white;
+    display: block;
+    height: 2px;
+    position: relative;
+    transition: background .2s ease-out;
+    width: 18px;
+}
+
+.header .menu-icon .nav-icon:before,
+.header .menu-icon .nav-icon:after {
+    background: white;
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    transition: all .2s ease-out;
+    width: 100%;
+}
+
+.header .menu-icon .nav-icon:before {
+    top: 5px;
+}
+
+.header .menu-icon .nav-icon:after {
+    top: -5px;
+}
+
+.header .menu-btn {
+    display: none;
+}
+
+.header .menu-btn:checked ~ .menu {
+    max-height: 450px;
+}
+
+.header .menu-btn:checked ~ .menu-icon .nav-icon {
+    background: transparent;
+}
+
+.header .menu-btn:checked ~ .menu-icon .nav-icon:before {
+    transform: rotate(-45deg);
+    top: 0;
+}
+
+.header .menu-btn:checked ~ .menu-icon .nav-icon::after {
+    transform: rotate(45deg);
+    top: 0;
+}
+
+/* -------------- Images --------------------- */
+.container {
+    padding: 0;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.gallery-item {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.gallery-item .image{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.gallery-item .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
+    cursor: pointer;
+    transition: .5s ease-in-out;
+}
+
+.gallery-item:hover .image img {
+    transform: scale(1.05);
+}
+
+.gallery-item .text {
+    opacity: 1;
+    position: absolute;
+    top: 70%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 6vw;
+    pointer-events: none;
+    z-index: 4;
+}
+
+/* Events Page */
+.event {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    margin: 50px 20px 20px 50px;
+}
+
+/* The Play */
+.theplay {
+    position: absolute;
+    margin: 60px;
+
+}
+
+.theplay-p {
+    font-size: 1.5vw;
+    line-height: 1.5;
+}
+/* ------------- Media Query ------------------ */
+@media (min-width:1058px){
+    .header ul {
+        background-color: transparent;
+    }
+    .header li{
+        float: left;
+    }
+    .header li a {
+        padding: 20px 25px;
+        font-size: 16px;
+        font-weight: 400;
+        color: white;
+    }
+    .header li a:hover,
+    .header .menu-btn:hover {
+    background-color: rgb(201, 47, 72);
+    }
+    .header .menu {
+        clear: none;
+        float: right;
+        max-height: none;
+    }
+    .header .menu-icon{
+        display: none;
+    }
+    .container {
+        height: 800px;
+        grid-template-columns: repeat(3,1fr);
+        grid-template-rows: none;
+    }
+    .gallery-item .text {
+        top: 35%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 48px;
+        pointer-events: none;
+        z-index: 4;
+    }
+    
+}
+
+/* ---------------- Accessibility -----------------------*/
+/* Tone down the animation to avoid vestibular motion triggers like scaling or panning large objects. */
+@media (prefers-reduced-motion) {
+    .gallery-item:hover .image img {
+        transform: none;
+    }
+}
